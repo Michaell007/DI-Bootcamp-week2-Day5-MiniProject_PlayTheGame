@@ -1,3 +1,4 @@
+// main function
 function playTheGame() {
     let response = confirm("Do you want to play ?");
     if (!response) {
@@ -12,7 +13,7 @@ function playTheGame() {
         return;
     }
 
-    if (!isNaN(value) && (Number(value)<1 || Number(value)>10)) {
+    if ( !isNaN(value) && (Number(value) < 0 || Number(value) > 10) ) {
         alert("Sorry it’s not a good number, Goodbye"); 
         return;
     } else {
@@ -21,8 +22,9 @@ function playTheGame() {
     }
 }
 
+// Function pour comparer 2 nombres 
 function compareNumbers(userNumber,computerNumber) {
-    let nbChance = 0;
+    let nbChance = 1;
 
     while (nbChance < 4) {
         if (Number(userNumber) == Number(computerNumber)) {
@@ -38,14 +40,16 @@ function compareNumbers(userNumber,computerNumber) {
             alert("Your number is smaller then the computer’s, guess again");
         }
 
-        if (nbChance == 3) {
-            alert("out of chances");
-            break;
-        }
-
         let choice = prompt("Enter a new number");
+        while ( isNaN(choice) ) {
+            choice = prompt("Incorrect value, enter another number");
+        }
         userNumber = Number(choice);
 
         nbChance++;
-    }  
+    }
+
+    // fin du jeu
+    alert("out of chances");
+    return;
 }
